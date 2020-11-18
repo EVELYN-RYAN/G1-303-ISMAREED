@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
+    <script type="text/javascript" src="loading-bar.js"></script>
     <title>IS Match-Maker</title>
     <style>
 /* these are the styles that were given*/
 div.LoveHeart
 {
     height: 5em;
-    position: relative
+    position: absolute;
+    right: 5%;
+    bottom: 10%
 }
 
 div.LoveHeart p
@@ -20,20 +24,23 @@ div.LoveHeart p
     font-weight: bold;
     font-size: 150%;
     position: absolute;
+    right: 150px;
     top: 50%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)
+  
 }
         
     </style>
     
-    <div class="header">
-        <h1>Welcome to the BYU Informations System's Dating Site</h1>
-    </div>
+    
 
 </head>
 <body>
+    <div class="header">
+        <h1>Welcome to the BYU Informations System's Dating Site</h1>
+    </div>
 
     <div>
         <label for="LovePhrase">What is the love phrase:</label>
@@ -74,8 +81,12 @@ div.LoveHeart p
         <input type="button" value="Click Me" onclick="FindTheLove()">
         <input type="button" value="Reset" onclick="ClearTheLove()" > 
     </div> 
-
-    <div class="LoveHeart">
+    <div class="LoveHeart ldBar" data-type="fill" id="iPowerScore"
+        data-path="M90.5,23.2c0-12.5-10.2-22.7-22.7-22.7
+        c-13.6,0-20.9,8.6-22.3,13.8C44.3,8.9,
+        35.1,0.5,23.2,0.5C10.7,0.5,0.5,10.7,
+        0.5,23.2c0,22.2,36.5,45.3,45,55.9
+        C53.5,67.3,90.5,46.3,90.5,23.2z">
         <p id="output"></p>
     </div>
     
@@ -151,8 +162,12 @@ div.LoveHeart p
             else{
                 Mesg = "NO GO!"}
             
-
+            var bar1 = new ldBar("#iPowerScore");
+            bar1.set(iPower);
+            
+            
         }
+       
 
         function ClearTheLove()
         {
@@ -160,4 +175,3 @@ div.LoveHeart p
         }
     </script>
 </body>
-</html>
