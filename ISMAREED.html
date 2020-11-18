@@ -171,7 +171,21 @@ div.LoveHeart p
 
         function ClearTheLove()
         {
-            // reset all fields and autofucus
+            // clear all inputs
+            document.getElementById("LovePhrase").value= "";
+            document.getElementById("FullName1").value= "";
+            document.getElementById("FullName2").value= "";
+            //clear checkboxes
+            document.getElementById("Coms").checked = false;
+            document.getElementById("Selfish").checked = false;
+            document.getElementById("Service").checked = false;
+            document.getElementById("BFF").checked = false;
+            document.getElementById("God").checked = false;
+            //set image to 0%
+            document.getElementById("iPowerScore").style.fill = "none";
+            iPower = 0;
+            //clear message
+            document.getElementByID("output").style.display = "none";
         }
     </script>
 </body>
