@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="loading-bar.css"/>
-    <script type="text/javascript" src="loading-bar.js"></script>
+    <!--connnecting offsite style sheets-->
+    <link rel="stylesheet" type="text/css"/>
+    <script id="LinkSrc" type="text/javascript" src="loading-bar.js"></script>
     <title>IS Match-Maker</title>
     <style>
 /* these are the styles that were given*/
@@ -18,24 +19,33 @@ div.LoveHeart
 
 div.LoveHeart p
 {
-    margin: 0;
-    background: white;
-    color: red;
+    margin: auto ;
+    width: 100%;
+    background: rgba(255, 255, 255, 0);
+    color: rgb(0, 0, 0);
     font-weight: bold;
-    font-size: 150%;
+    font-size: 100%;
     position: absolute;
-    right: 150px;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
-  
+    top: 125%;
+    left: 0%;
+    text-align: center;
+}   
+div.ldBar-label{
+    width: 100%;
+    text-align: center;
+    bottom: 45% ;
+    content: "%";
+    font-weight: bold;
+    position:absolute;
 }
-        
+div.ldBar-label:after{
+    content: "%";
+}
+div.header{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
     </style>
-    
-    
-
 </head>
 <body>
     <div class="header">
@@ -81,7 +91,8 @@ div.LoveHeart p
         <input type="button" value="Click Me" onclick="FindTheLove()">
         <input type="button" value="Reset" onclick="ClearTheLove()" > 
     </div> 
-    <div class="LoveHeart ldBar" data-type="fill" id="iPowerScore"
+    <!-- manually drawing the heart loading bar-->
+    <div class="LoveHeart" data-type="fill" id="iPowerScore"
         data-path="M90.5,23.2c0-12.5-10.2-22.7-22.7-22.7
         c-13.6,0-20.9,8.6-22.3,13.8C44.3,8.9,
         35.1,0.5,23.2,0.5C10.7,0.5,0.5,10.7,
@@ -90,9 +101,15 @@ div.LoveHeart p
         <p id="output"></p>
     </div>
     
-    <script>      
+    <script>   
+    
+        // Call out to external .js
+        var bar1 = new ldBar("#iPowerScore");
+            
+
         function FindTheLove()
         {
+            
             //iLovecount with name and love phrase
             //declare variables and change to uppercase
             var sLovePhrase = document.getElementById("LovePhrase").value.toUpperCase();
@@ -134,6 +151,7 @@ div.LoveHeart p
             var iPower;
             var adder = 0;
             var godCheck = 0;
+            var finalAdder = 0;
             var cont = document.getElementById("checkies").children;
 
             for (var i = 0; i < cont.length; i++) {
@@ -154,24 +172,22 @@ div.LoveHeart p
             
             //display messages based on iPower value
             if (iPower >= 100){
-                Mesg = "Perfect Marriage"}
+                document.getElementById("output").innerHTML = "Perfect Marriage"}
             else if (iPower >= 85){
-                Mesg = "Get Married!"}
+                document.getElementById("output").innerHTML = "Get Married!"}
             else if (iPower >= 70){
-                Mesg = "It might work"}
+                document.getElementById("output").innerHTML = "It might work"}
             else{
-                Mesg = "NO GO!"}
-            
-            var bar1 = new ldBar("#iPowerScore");
-            bar1.set(iPower);
-            
-            
-        }
+                document.getElementById("output").innerHTML = "NO GO!"}
+            //place percentage into heart
+                bar1.set(iPower);
+            }
        
 
         function ClearTheLove()
         {
-            // reset all fields and autofucus
+            location.reload();
+
         }
     </script>
 </body>
